@@ -46,11 +46,11 @@ async function Header() {
               Interactive Code Editor
             </span>
           </div>
-        </Link>          {/* Navigation section - visible on larger screens */}
-        <nav className="hidden sm:flex items-center space-x-1">
+        </Link>          {/* Navigation section - visible on all screens */}
+        <nav className="flex items-center space-x-1">
           <Link
             href="/snippets"
-            className="relative group flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-gray-300 bg-gray-800/50 
+            className="relative group flex items-center gap-1.5 px-2.5 sm:px-3 py-1.5 rounded-lg text-gray-300 bg-gray-800/50 
                 hover:bg-blue-500/10 border border-gray-800 hover:border-blue-500/50 transition-all duration-300 shadow-lg overflow-hidden"
           >
             <div
@@ -59,7 +59,7 @@ async function Header() {
             />
             <Code2 className="w-3.5 h-3.5 relative z-10 group-hover:rotate-3 transition-transform" />
             <span
-              className="text-sm font-medium relative z-10 group-hover:text-white
+              className="text-xs sm:text-sm font-medium relative z-10 group-hover:text-white
                  transition-colors"
             >
               Snippets

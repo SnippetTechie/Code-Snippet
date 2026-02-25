@@ -2,12 +2,15 @@
 
 import HeaderProfileBtn from "@/app/(root)/_components/HeaderProfileBtn";
 import { SignedOut } from "@clerk/nextjs";
-import { Blocks, Code2, Menu, Sparkles, X } from "lucide-react";
+import { Blocks, Code2, Menu, Sparkles, X, Pencil } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
+import { usePathname } from "next/navigation";
 
 function NavigationHeader() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const pathname = usePathname();
+  const isSnippetsPage = pathname?.startsWith("/snippets");
 
   return (
     <div className="sticky top-0 z-50 w-full border-b border-gray-800/50 bg-gray-950/80 backdrop-blur-xl backdrop-saturate-150">
@@ -41,10 +44,10 @@ function NavigationHeader() {
               </div>
             </Link>
 
-            {/* Desktop snippets Link */}
+            {/* Desktop navigation Link */}
             <div className="hidden sm:block">
               <Link
-                href="/snippets"
+                href={isSnippetsPage ? "/" : "/snippets"}
                 className="relative group flex items-center gap-2 px-4 py-1.5 rounded-lg text-gray-300 bg-gray-800/50 hover:bg-blue-500/10 
                 border border-gray-800 hover:border-blue-500/50 transition-all duration-300 shadow-lg overflow-hidden"
               >
@@ -52,9 +55,13 @@ function NavigationHeader() {
                   className="absolute inset-0 bg-linear-to-r from-blue-500/10 
                 to-purple-500/10 opacity-0 group-hover:opacity-100 transition-opacity"
                 />
-                <Code2 className="w-4 h-4 relative z-10 group-hover:rotate-3 transition-transform" />
+                {isSnippetsPage ? (
+                  <Pencil className="w-4 h-4 relative z-10 group-hover:rotate-3 transition-transform" />
+                ) : (
+                  <Code2 className="w-4 h-4 relative z-10 group-hover:rotate-3 transition-transform" />
+                )}
                 <span className="text-sm font-medium relative z-10 group-hover:text-white transition-colors">
-                  Snippets
+                  {isSnippetsPage ? "Code Editor" : "Snippets"}
                 </span>
               </Link>
             </div>
@@ -100,13 +107,17 @@ function NavigationHeader() {
         <div className="sm:hidden bg-gray-900/95 backdrop-blur-md border-b border-gray-800">
           <div className="px-4 py-3 space-y-3">
             <Link
-              href="/snippets"
+              href={isSnippetsPage ? "/" : "/snippets"}
               className="flex items-center gap-2 px-4 py-2 rounded-lg text-gray-300 bg-gray-800/70 hover:bg-blue-500/10
               border border-gray-800 hover:border-blue-500/50 transition-all w-full"
               onClick={() => setMobileMenuOpen(false)}
             >
-              <Code2 className="w-4 h-4" />
-              <span className="text-sm font-medium">Snippets</span>
+              {isSnippetsPage ? (
+                <Pencil className="w-4 h-4" />
+              ) : (
+                <Code2 className="w-4 h-4" />
+              )}
+              <span className="text-sm font-medium">{isSnippetsPage ? "Code Editor" : "Snippets"}</span>
             </Link>
 
             <SignedOut>
