@@ -26,7 +26,7 @@ async function Header() {
           {/* Logo hover effect */}
 
           <div
-            className="absolute -inset-2 bg-gradient-to-r from-blue-500/20 to-purple-500/20 rounded-lg opacity-0 
+            className="absolute -inset-2 bg-linear-to-r from-blue-500/20 to-purple-500/20 rounded-lg opacity-0 
                 group-hover:opacity-100 transition-all duration-500 blur-xl"
           />
 

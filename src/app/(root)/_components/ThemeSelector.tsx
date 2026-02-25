@@ -7,12 +7,12 @@ import { AnimatePresence, motion } from "framer-motion";
 import { CircleOff, Cloud, Github, Laptop, Moon, Palette, Sun } from "lucide-react";
 import useMounted from "@/hooks/useMounted";
 
-const THEME_ICONS: Record<string, React.ReactNode> = {
-  "vs-dark": <Moon className="size-3.5 sm:size-4" />,
-  "vs-light": <Sun className="size-3.5 sm:size-4" />,
-  "github-dark": <Github className="size-3.5 sm:size-4" />,
-  monokai: <Laptop className="size-3.5 sm:size-4" />,
-  "solarized-dark": <Cloud className="size-3.5 sm:size-4" />,
+const THEME_ICONS: Record<string, React.ComponentType<{ className?: string }>> = {
+  "vs-dark": Moon,
+  "vs-light": Sun,
+  "github-dark": Github,
+  monokai: Laptop,
+  "solarized-dark": Cloud,
 };
 
 function ThemeSelector() {
@@ -97,10 +97,14 @@ backdrop-blur-xl rounded-xl border border-[#313244] shadow-2xl py-1.5 sm:py-2 z-
                 ${theme === t.id ? "bg-blue-500/10 text-blue-400" : "bg-gray-800/50 text-gray-400"}
                 group-hover:scale-110 transition-all duration-200
               `}
-                >                  {THEME_ICONS[t.id] ?
-                  React.cloneElement(THEME_ICONS[t.id] as React.ReactElement, { className: "w-2.5 h-2.5 sm:w-3 sm:h-3" }) :
-                  <CircleOff className="w-2.5 h-2.5 sm:w-3 sm:h-3" />
-                  }
+                >
+                  {THEME_ICONS[t.id] ? (
+                    React.createElement(THEME_ICONS[t.id], {
+                      className: "w-2.5 h-2.5 sm:w-3 sm:h-3",
+                    })
+                  ) : (
+                    <CircleOff className="w-2.5 h-2.5 sm:w-3 sm:h-3" />
+                  )}
                 </div>
                 {/* label */}
                 <span className="flex-1 text-left text-[10px] sm:text-xs group-hover:text-white transition-colors">

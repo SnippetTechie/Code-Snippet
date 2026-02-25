@@ -72,7 +72,7 @@ function EditorPanel() {
                   onChange={(e) => handleFontSizeChange(parseInt(e.target.value))}
                   className="w-12 sm:w-14 h-1 bg-gray-600 rounded-lg cursor-pointer"
                 />
-                <span className="text-[10px] sm:text-xs font-medium text-gray-400 min-w-[1.25rem] sm:min-w-[1.5rem] text-center">
+                <span className="text-[10px] sm:text-xs font-medium text-gray-400 min-w-5m] text-center">
                   {fontSize}
                 </span>
               </div>
